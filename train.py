@@ -158,7 +158,6 @@ class Trainer(object):
                         self.scheduler(self.optimizer, i, epoch, self.best_pred)
                         self.optimizer.zero_grad()
                         output, conf, pre_conf = self.model(image)
-                        pre_conf = 
                         loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
                         loss.backward()
                         self.optimizer.step()
