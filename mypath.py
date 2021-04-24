@@ -10,9 +10,9 @@ class Path(object):
         elif dataset == 'coco':
             return '/path/to/datasets/coco/'
         elif dataset == 'small_obstacle':
-            return '/scratch/ash/data_run/downtown_data_run/'
+            return '/content/small_obstacle_dataset/'
         elif dataset == 'lnf':
-            return '/scratch/adityaRRC/small_obstacle_dataset/'
+            return '/content/small_obstacle_dataset/'
         else:
             print('Dataset {} not available.'.format(dataset))
             raise NotImplementedError
