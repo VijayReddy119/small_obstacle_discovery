@@ -111,7 +111,7 @@ class Trainer(object):
                                                                                         args.epochs, len(self.train_loader))
 
                 # write the graph
-                tensor = torch.zeros([2, 4, 512, 512])
+                tensor = torch.zeros([2, 3, 512, 512])
                 self.writer.add_graph(model, tensor)
 
                 # Using cuda
