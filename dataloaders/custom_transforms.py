@@ -154,9 +154,9 @@ class RandomCrop(object):
         img=np.asarray(sample['image'])
         mask=np.asarray(sample['label'])
         h,w,_=img.shape
-        assert h == self.crop_size[0], "Input image height incorrect"
+        #assert h == self.crop_size[0], "Input image height incorrect"
         crop_w=np.random.randint(0,w-self.crop_size[1])
-        return {'image': Image.fromarray(img[0:self.crop_size[0],crop_w:crop_w+self.crop_size[1],:]),
+        return {'image': Image.fromarray(img[0:self.crop_size[0],crop_w:crop_w+self.crop_size[1],:3]),
                 'label': Image.fromarray(mask[0:self.crop_size[0],crop_w:crop_w+self.crop_size[1]])}
 
 class FixScaleCrop(object):
