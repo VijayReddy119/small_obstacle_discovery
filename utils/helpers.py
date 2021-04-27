@@ -137,11 +137,11 @@ def get_ImagesAndLabels_from_dir(path, data_type='train', num_stripes=56,
             for img in list_of_paths:
                 for i in range(num_stripes):
                     images.append(os.path.join(temp, img)+'.m'+str(i)+'n')
-                label = img.split('_leftImg8bit.png')[0]+'_gtCoarse_labelTrainIds.png'
+                label = img.split('.png')[0]+'.png'
                 label = os.path.join(label_path, a, label)
                 for i in range(num_stripes):
                     labels.append(label+'.m'+str(i)+'n')
-                disparity = img.split('_leftImg8bit.png')[0]+'_disparity.png'
+                disparity = img.split('.png')[0]+'.png'
                 disparity = os.path.join(disparity_path, a, disparity)
                 for i in range(num_stripes):
                     disparities.append(disparity+'.m'+str(i)+'n')
@@ -168,7 +168,7 @@ def get_ImagesAndLabels_contextnet(path, data_type='train', num_samples=None):
             temp = os.path.join(image_path, a)
             for img in os.listdir(temp):
                 images.append(os.path.join(temp, img))
-                label = img.split('_leftImg8bit.png')[0]+'_gtCoarse_labelTrainIds.png'
+                label = img.split('.png')[0]+'.png'
                 label = os.path.join(label_path, a, label)
                 labels.append(label)
 
@@ -193,8 +193,8 @@ def get_ImagesAndLabels_mergenet(path, data_type='train', num_samples=None):
             temp = os.path.join(image_path, a)
             for img in os.listdir(temp):
                 images.append(os.path.join(temp, img))
-                label = img.split('_leftImg8bit.png')[0]+'_gtCoarse_labelTrainIds.png'
-                depth = img.split('_leftImg8bit.png')[0]+'_disparity.png'
+                label = img.split('.png')[0]+'.png'
+                depth = img.split('.png')[0]+'.png'
                 depth = os.path.join(disparity_path, a, depth)
                 label = os.path.join(label_path, a, label)
                 disparity.append(depth)
@@ -219,7 +219,7 @@ def generate_additional_stripes(images, disparities, labels, path, width=32, num
         if a != '.DS_Store':
             temp = os.path.join(image_path, a)
             for img in os.listdir(temp):
-                label = img.split('_leftImg8bit.png')[0]+'_gtCoarse_labelTrainIds.png'
+                label = img.split('.png')[0]+'.png'
                 label = os.path.join(label_path, a, label)
                 im = np.asarray(Image.open(label, 'r'))
                 im_cropped = im[281:793, 128:1920]
@@ -550,7 +550,7 @@ if __name__ == "__main__":
                         default=0, required=True)
     args = parser.parse_args()
 
-    absolute_dataset_path = '/scratch/adityaRRC/small_obstacle_dataset/'
+    absolute_dataset_path = '/content/small_obstacle_dataset/'
     print(colored("Retrieving image file names...", "yellow"))
     # gets basic stripes
     train_rgbImages, train_dispImages, train_masks = get_ImagesAndLabels_from_dir(absolute_dataset_path)
