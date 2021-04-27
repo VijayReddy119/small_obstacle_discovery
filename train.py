@@ -23,7 +23,7 @@ class Trainer(object):
                 # Define Saver
                 self.saver = Saver(args)
                 self.saver.save_experiment_config()
-                self.nclass = 3
+                self.nclass = 10
                 # Define Tensorboard Summary
                 self.summary = TensorboardSummary(self.saver.experiment_dir)
                 self.writer = self.summary.create_summary()
