@@ -9,9 +9,9 @@ class Saver(object):
     def __init__(self, args):
         self.args = args
         if args.debug:
-            self.directory = os.path.join('/scratch/adityaRRC/logs/run/debug/', args.dataset, args.checkname)
+            self.directory = os.path.join('./logs/run/debug/', args.dataset, args.checkname)
         else:
-            self.directory = os.path.join('/scratch/adityaRRC/logs/run/',
+            self.directory = os.path.join('./logs/run/',
                                           args.logsFlag, args.dataset, args.checkname)
         self.runs = sorted(glob.glob(os.path.join(self.directory, 'experiment_*')))
         run_id = int(self.runs[-1].split('_')[-1]) + 1 if self.runs else 0
