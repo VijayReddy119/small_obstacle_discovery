@@ -454,7 +454,7 @@ class LNFGeneratorTorch(Dataset):
 
     @staticmethod
     def _context_func_rgb(path):
-        im = np.asarray(Image.open(path, 'r'))
+        im = np.asarray(Image.open(path).convert('RGB'))
         im_cropped = im[281:793, 128:1920, :]
         return im_cropped
 
