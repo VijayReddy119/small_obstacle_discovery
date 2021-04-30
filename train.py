@@ -244,10 +244,11 @@ class Trainer(object):
                         if self.args.cuda:
                                 image, target = image.cuda(), target.cuda()
                         with torch.no_grad():
-                                output, conf = self.model(image)
+                                x = self.model(image)
+                                output, conf = x[0], x[1]
                                 print(output.shape)
-                        loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
-                        test_loss += loss.item()
+                                loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
+                                test_loss += loss.item()
                         tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
                         if i % (num_itr // 5) == 0:
                                 global_step = i + num_itr * epoch
